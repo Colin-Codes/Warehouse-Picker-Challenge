@@ -2,7 +2,7 @@
 
 namespace Rainforest_Robot {
     class Robot : WareHousePicker {
-        public Robot (int X, int Y) : base(X, Y) {
+        public Robot (int _X, int _Y) : base(_X, _Y) {
             
         }
         

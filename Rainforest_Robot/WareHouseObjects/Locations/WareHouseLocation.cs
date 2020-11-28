@@ -2,7 +2,7 @@
 
 namespace Rainforest_Robot {
     class WareHouseLocation : WareHouseObject {
-        public WareHouseLocation (int X, int Y, int Quantity = 0) : base(X, Y, Quantity) {
+        public WareHouseLocation (int _X, int _Y, int _Quantity = 0) : base(_X, _Y, _Quantity) {
 
         }
             

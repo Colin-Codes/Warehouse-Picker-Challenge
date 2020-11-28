@@ -24,6 +24,9 @@ namespace Rainforest_Robot {
 
             public void Execute() {
                 foreach (Char instruction in instructions) {
+                    if (robot.Status == "BROKEN") {
+                        return;
+                    }
                     switch (instruction) {
                         case 'N':
                             robot.goNorth();
@@ -40,7 +43,7 @@ namespace Rainforest_Robot {
                         case 'P':
                             int pickedBags = -1;
                             foreach (Crate crate in crates) {
-                                if (robot.hasReachedCrate(crate.X, crate.Y)) {
+                                if (robot.hasReachedLocation(crate.X, crate.Y)) {
                                     pickedBags = crate.giveBag();
                                     break;
                                 }
@@ -48,6 +51,7 @@ namespace Rainforest_Robot {
                             robot.pickBags(pickedBags);
                             break;
                         case 'D':
+                            robot.dropBags(feeder.X, feeder.Y);
                             break;    
                         default:
                             throw new System.ArgumentException("The following instruction is not recognised: " + instruction);                   

@@ -9,41 +9,63 @@ namespace Rainforest_Robot
             // Interpret command line arguments
             bool testMode = false;
             bool humanMode = false;
-            List<string> dirs = new List<string>();
-            foreach (string arg in args) {
-                if (arg.ToUpper() == "--TEST") {
-                    testMode = true;
+            try {
+                List<string> dirs = new List<string>();
+                foreach (string arg in args) {
+                    if (arg.ToUpper() == "--TEST") {
+                        testMode = true;
+                    }
+                    else if (arg.ToUpper() == "--HUMAN") {
+                        humanMode = true;
+                    }
+                    else {
+                        dirs.Add(arg);
+                    }
                 }
-                else if (arg.ToUpper() == "--HUMAN") {
-                    humanMode = true;
-                }
-                else {
-                    dirs.Add(arg);
-                }
+                implementInput(testMode:testMode, humanMode:humanMode, dirs:dirs);
+            } catch (Exception ex) {
+                Console.WriteLine("The program has crashed:");
+                Console.WriteLine(ex);
             }
-            implementInstructions(testMode:testMode, humanMode:humanMode, dirs:dirs);
         }
 
-        static void implementInstructions(bool testMode, bool humanMode, List<string> dirs) {
+        static void implementInput(bool testMode, bool humanMode, List<string> dirs) {
             if (dirs.Capacity == 0) {
                 // Get data by user input
-                string feederCoords = fetchInput("Enter feeder co-ords in the format: x y");
-                string robotCoords = fetchInput("Enter robot co-ords in the format: x y");
-                string crateData = fetchInput("Enter crate data in the format: x y q, x1 y1 q1 etc");
-                Console.WriteLine(feederCoords);
-                Console.WriteLine(robotCoords);
-                Console.WriteLine(crateData);
+                try {
+                    int[] feederCoords = Array.ConvertAll(fetchInput("Enter feeder co-ords in the format: x y").Split(" "), s => int.Parse(s));
+                    Feeder feeder = new Feeder(feederCoords[0], feederCoords[1]);
+                    int[] robotCoords = Array.ConvertAll(fetchInput("Enter robot co-ords in the format: x y").Split(" "), s => int.Parse(s));
+                    Robot robot = new Robot(robotCoords[0], robotCoords[1]);
+                    string[] crateStrings = fetchInput("Enter crate data in the format: x y q, x1 y1 q1 etc").Split(",");
+                    List<Crate> crates = new List<Crate>();
+                    foreach (string crateString in crateStrings) {
+                        int[] crateInts = Array.ConvertAll(crateString.Split(" "), s => int.Parse(s));
+                        Crate crate = new Crate(crateInts[0], crateInts[1], crateInts[2]);
+                        crates.Add(crate);
+                    }
+                    string instructions = fetchInput("Enter instructions as a continuous string:");
+                    PickList pickList = new PickList(feeder, robot, crates, instructions);
+                    pickList.Report();
+                } catch (Exception ex) {
+                    Console.WriteLine("The instuctions were invalid:");
+                    Console.WriteLine(ex);
+                }
             }
             foreach (string dir in dirs) {
-                Console.WriteLine(dir);
-
+                try {
+                    Console.WriteLine(dir);
+                } catch (Exception ex) {
+                    Console.WriteLine("The instuctions were invalid:");
+                    Console.WriteLine(ex);
+                };
             }
 
         }
 
         static string fetchInput(string prompt) {
             Console.WriteLine(prompt);
-            return Console.ReadLine();
+            return Console.ReadLine().Trim();
         }
     }
 }

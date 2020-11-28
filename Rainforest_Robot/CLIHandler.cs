@@ -25,13 +25,25 @@ namespace Rainforest_Robot
         }
 
         static void implementInstructions(bool testMode, bool humanMode, List<string> dirs) {
-            Console.WriteLine(testMode);
-            Console.WriteLine(humanMode);
+            if (dirs.Capacity == 0) {
+                // Get data by user input
+                string feederCoords = fetchInput("Enter feeder co-ords in the format: x y");
+                string robotCoords = fetchInput("Enter robot co-ords in the format: x y");
+                string crateData = fetchInput("Enter crate data in the format: x y q, x1 y1 q1 etc");
+                Console.WriteLine(feederCoords);
+                Console.WriteLine(robotCoords);
+                Console.WriteLine(crateData);
+            }
             foreach (string dir in dirs) {
                 Console.WriteLine(dir);
 
             }
 
+        }
+
+        static string fetchInput(string prompt) {
+            Console.WriteLine(prompt);
+            return Console.ReadLine();
         }
     }
 }

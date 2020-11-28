@@ -6,11 +6,12 @@ namespace Rainforest_Robot {
         string status;
 
         public string Status {
-            get;
+            get {
+                return status;
+            }
         }
 
-        public WareHousePicker (int _X, int _Y, int _Quantity = 0) : base(_X, _Y, _Quantity) {
-              
+        public WareHousePicker (int _X, int _Y, int _Quantity = 0) : base(_X, _Y, _Quantity) {              
             status = "OK";      
         }
 

@@ -13,13 +13,19 @@ namespace Rainforest_Robot {
             
             string instructions;
 
-            List<string> output;
+            private List<string> output;
+            public List<string> Output {                
+                get {
+                    return output;
+                }
+            }
             
             public PickList(Feeder _feeder, Robot _robot, List<Crate> _crates, string _instructions) {
                 feeder = _feeder;
                 robot = _robot;
                 crates = _crates;
                 instructions = _instructions;
+                output = new List<string>();
             }
 
             public void Execute() {
@@ -57,7 +63,8 @@ namespace Rainforest_Robot {
                             throw new System.ArgumentException("The following instruction is not recognised: " + instruction);                   
                     }
                 }
-                //output.Add(feeder.Quantity);
+                output.Add(feeder.Quantity.ToString());
+                output.Add(robot.X.ToString() + " " + robot.Y.ToString() + " " + robot.Status);
             }
 
             public void Report() {

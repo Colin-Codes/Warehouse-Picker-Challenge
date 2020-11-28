@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "Rainforest_Robot/1.0.0": {
+        "runtime": {
+          "Rainforest_Robot.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Rainforest_Robot/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

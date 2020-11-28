@@ -1,0 +1,16 @@
+C:\Users\colin\source\Imin\Rainforest_Robot\bin\Debug\net5.0\Rainforest_Robot.exe
+C:\Users\colin\source\Imin\Rainforest_Robot\bin\Debug\net5.0\Rainforest_Robot.deps.json
+C:\Users\colin\source\Imin\Rainforest_Robot\bin\Debug\net5.0\Rainforest_Robot.runtimeconfig.json
+C:\Users\colin\source\Imin\Rainforest_Robot\bin\Debug\net5.0\Rainforest_Robot.runtimeconfig.dev.json
+C:\Users\colin\source\Imin\Rainforest_Robot\bin\Debug\net5.0\Rainforest_Robot.dll
+C:\Users\colin\source\Imin\Rainforest_Robot\bin\Debug\net5.0\ref\Rainforest_Robot.dll
+C:\Users\colin\source\Imin\Rainforest_Robot\bin\Debug\net5.0\Rainforest_Robot.pdb
+C:\Users\colin\source\Imin\Rainforest_Robot\obj\Debug\net5.0\Rainforest_Robot.csprojAssemblyReference.cache
+C:\Users\colin\source\Imin\Rainforest_Robot\obj\Debug\net5.0\Rainforest_Robot.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\colin\source\Imin\Rainforest_Robot\obj\Debug\net5.0\Rainforest_Robot.AssemblyInfoInputs.cache
+C:\Users\colin\source\Imin\Rainforest_Robot\obj\Debug\net5.0\Rainforest_Robot.AssemblyInfo.cs
+C:\Users\colin\source\Imin\Rainforest_Robot\obj\Debug\net5.0\Rainforest_Robot.csproj.CoreCompileInputs.cache
+C:\Users\colin\source\Imin\Rainforest_Robot\obj\Debug\net5.0\Rainforest_Robot.dll
+C:\Users\colin\source\Imin\Rainforest_Robot\obj\Debug\net5.0\ref\Rainforest_Robot.dll
+C:\Users\colin\source\Imin\Rainforest_Robot\obj\Debug\net5.0\Rainforest_Robot.pdb
+C:\Users\colin\source\Imin\Rainforest_Robot\obj\Debug\net5.0\Rainforest_Robot.genruntimeconfig.cache

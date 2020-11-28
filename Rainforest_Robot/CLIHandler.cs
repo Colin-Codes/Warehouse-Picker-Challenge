@@ -46,6 +46,7 @@ namespace Rainforest_Robot
                     }
                     string instructions = fetchInput("Enter instructions as a continuous string:");
                     PickList pickList = new PickList(feeder, robot, crates, instructions);
+                    pickList.Execute();
                     pickList.Report();
                 } catch (Exception ex) {
                     Console.WriteLine("The instuctions were invalid:");

@@ -2,17 +2,17 @@
 
 namespace Rainforest_Robot {
     abstract class WareHouseObject {
-        private int x;
+        protected int x;
         public int X {
             get;
         }
 
-        private int y;
+        protected int y;
         public int Y {
             get;
         }
 
-        private int quantity;
+        protected int quantity;
         public int Quantity {
             get;
         }    
@@ -23,7 +23,8 @@ namespace Rainforest_Robot {
         }    
 
         public string Report () {
-            return "X: " + x + ", Y:  " + y + ", Q: " + quantity + " ";
+            // For debugging purposes
+            return "X: " + x + ", Y:  " + y + ", Q: " + quantity;
         }
     }
 }

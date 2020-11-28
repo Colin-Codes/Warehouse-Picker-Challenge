@@ -1,23 +1,37 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Rainforest_Robot
 {
     class CLIHandler
     {
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
+            // Interpret command line arguments
             bool testMode = false;
             bool humanMode = false;
+            List<string> dirs = new List<string>();
             foreach (string arg in args) {
-                if (arg == "--TEST") {
+                if (arg.ToUpper() == "--TEST") {
                     testMode = true;
                 }
-                else if (arg == "--HUMAN") {
+                else if (arg.ToUpper() == "--HUMAN") {
                     humanMode = true;
                 }
+                else {
+                    dirs.Add(arg);
+                }
             }
-            // Interpret command line arguments
-            Console.WriteLine("Hello World!");
+            implementInstructions(testMode:testMode, humanMode:humanMode, dirs:dirs);
+        }
+
+        static void implementInstructions(bool testMode, bool humanMode, List<string> dirs) {
+            Console.WriteLine(testMode);
+            Console.WriteLine(humanMode);
+            foreach (string dir in dirs) {
+                Console.WriteLine(dir);
+
+            }
+
         }
     }
 }

@@ -31,7 +31,7 @@ namespace Rainforest_Robot {
             public void Execute() {
                 foreach (Char instruction in instructions) {
                     if (robot.Status == "BROKEN") {
-                        return;
+                        break;
                     }
                     switch (instruction) {
                         case 'N':

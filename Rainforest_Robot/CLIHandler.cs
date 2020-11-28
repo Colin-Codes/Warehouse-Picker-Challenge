@@ -23,7 +23,7 @@ namespace Rainforest_Robot
                         dirs.Add(arg);
                     }
                 }
-                implementInput(testMode:testMode, humanMode:humanMode, dirs:dirs);
+                implementInput(testMode, humanMode, dirs);
             } catch (Exception ex) {
                 Console.WriteLine("The program has crashed:");
                 Console.WriteLine(ex);
@@ -59,17 +59,17 @@ namespace Rainforest_Robot
                         List<string> input = new List<string>();
                         List<string> output = new List<string>();
                         while ((line = Reader.ReadLine()) != null) { 
-                            Console.WriteLine(line);
                             if (input.Count < 4) {
+                                Console.WriteLine(line);
                                 input.Add(line);
-                            } else if (testMode == true) {
+                            } else {
                                 output.Add(line);
                             }
                         }  
                         if (testMode == true && output.Count < 2) {
                             Console.WriteLine("The test file does not contain sufficient output data");                            
                         } else {
-                            implementInput(input[0], input[1], input[2], input[3], output);
+                            implementInput(input[0], input[1], input[2], input[3], output, testMode);
                         }
                         Console.WriteLine();
                     }
@@ -86,7 +86,7 @@ namespace Rainforest_Robot
             return Console.ReadLine().Trim();
         }
 
-        static void implementInput(string _feederCoords, string _robotCoords, string _crateString, string _instructions, List<string> _testOutput = null) { 
+        static void implementInput(string _feederCoords, string _robotCoords, string _crateString, string _instructions, List<string> _testOutput = null, bool testMode = false) { 
             int[] feederCoords = Array.ConvertAll(_feederCoords.Split(" "), s => int.Parse(s));
             Feeder feeder = new Feeder(feederCoords[0], feederCoords[1]);
             int[] robotCoords = Array.ConvertAll(_robotCoords.Split(" "), s => int.Parse(s));
@@ -104,34 +104,30 @@ namespace Rainforest_Robot
 
             // Present output
             bool testPassed = true;
-            foreach(string output in pickList.Output) {
-                Console.WriteLine(output);
-                if (_testOutput != null) {                    
-                    foreach (string testOuput in _testOutput) {
-                        if (testOuput != output) {
-                            testPassed = false;
-                        }
-                    }  
+            if (pickList.Output.Count == 0) {
+                throw new System.ArgumentException("Insufficient picklist output");       
+            }
+            int i = 0;
+            foreach(string pickListOutput in pickList.Output) {
+                Console.WriteLine(pickListOutput);
+                if (testMode == true) {    
+                    string testOuput = _testOutput[i];              
+                    if (testOuput != pickListOutput) {
+                        testPassed = false;
+                    }
                 }   
+                i +=1;
             }        
-            if (_testOutput != null)  {
+            if (testMode == true)  {
                 if ( testPassed == true) {
                     Console.WriteLine("Test passed");
                 } else {
-                    Console.WriteLine("Test failed");
+                    Console.WriteLine("Test failed, expected: ");
+                    foreach (string testOuput in _testOutput) {
+                        Console.WriteLine(testOuput);
+                    }
                 }
             }
         }
     }
 }
-
-
-// Robot picks up one at a time from crate
-// Drops all at once into feeder
-
-// Instructions one at a time
-// Robot moves NSEW one at a time
-// Pick up - P
-//   If not at a crate, it falls over
-// Drop off - D
-//  If not at a feeder it falls over

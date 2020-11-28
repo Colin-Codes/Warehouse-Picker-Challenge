@@ -31,7 +31,7 @@ namespace Rainforest_Robot
         }
 
         static void implementInput(bool testMode, bool humanMode, List<string> dirs) {
-            if (dirs.Capacity == 0) {
+            if (dirs.Count == 0) {
                 // Get data by user input
                 try {
             
@@ -53,13 +53,25 @@ namespace Rainforest_Robot
                         continue;
                     }
                     foreach (FileInfo file in directory.GetFiles("*.txt")) {
+                        Console.WriteLine("Test file: " + file.FullName);
                         System.IO.StreamReader Reader = new System.IO.StreamReader(file.FullName); 
                         string line; 
                         List<string> input = new List<string>();
+                        List<string> output = new List<string>();
                         while ((line = Reader.ReadLine()) != null) { 
-                            input.Add(line);
+                            Console.WriteLine(line);
+                            if (input.Count < 4) {
+                                input.Add(line);
+                            } else if (testMode == true) {
+                                output.Add(line);
+                            }
                         }  
-                        implementInput(input[0], input[1], input[2], input[3]);
+                        if (testMode == true && output.Count < 2) {
+                            Console.WriteLine("The test file does not contain sufficient output data");                            
+                        } else {
+                            implementInput(input[0], input[1], input[2], input[3], output);
+                        }
+                        Console.WriteLine();
                     }
                 } catch (Exception ex) {
                     Console.WriteLine("The instuctions were invalid:");
@@ -74,8 +86,7 @@ namespace Rainforest_Robot
             return Console.ReadLine().Trim();
         }
 
-        static void implementInput(string _feederCoords, string _robotCoords, string _crateString, string _instructions) { 
-
+        static void implementInput(string _feederCoords, string _robotCoords, string _crateString, string _instructions, List<string> _testOutput = null) { 
             int[] feederCoords = Array.ConvertAll(_feederCoords.Split(" "), s => int.Parse(s));
             Feeder feeder = new Feeder(feederCoords[0], feederCoords[1]);
             int[] robotCoords = Array.ConvertAll(_robotCoords.Split(" "), s => int.Parse(s));
@@ -90,8 +101,25 @@ namespace Rainforest_Robot
             string instructions = _instructions;
             PickList pickList = new PickList(feeder, robot, crates, instructions);
             pickList.Execute();
-            foreach(string line in pickList.Output) {
-                Console.WriteLine(line);
+
+            // Present output
+            bool testPassed = true;
+            foreach(string output in pickList.Output) {
+                Console.WriteLine(output);
+                if (_testOutput != null) {                    
+                    foreach (string testOuput in _testOutput) {
+                        if (testOuput != output) {
+                            testPassed = false;
+                        }
+                    }  
+                }   
+            }        
+            if (_testOutput != null)  {
+                if ( testPassed == true) {
+                    Console.WriteLine("Test passed");
+                } else {
+                    Console.WriteLine("Test failed");
+                }
             }
         }
     }

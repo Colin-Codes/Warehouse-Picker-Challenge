@@ -14,5 +14,9 @@ namespace Rainforest_Robot {
                 return 0;
             }
         }
+
+        public void receiveBags(int receivedBags) {
+            quantity += receivedBags;
+        }
     }
 }

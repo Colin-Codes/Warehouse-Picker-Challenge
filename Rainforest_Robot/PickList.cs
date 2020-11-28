@@ -57,7 +57,9 @@ namespace Rainforest_Robot {
                             robot.pickBags(pickedBags);
                             break;
                         case 'D':
-                            robot.dropBags(feeder.X, feeder.Y);
+                            feeder.receiveBags(
+                                robot.dropBags(feeder.X, feeder.Y)
+                            );
                             break;    
                         default:
                             throw new System.ArgumentException("The following instruction is not recognised: " + instruction);                   

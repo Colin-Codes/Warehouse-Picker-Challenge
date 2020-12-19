@@ -8,8 +8,8 @@
 
 ## Build
 I wrote and built this in VS Code, using the C# extension (https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp). 
-1. Navigate to ~\Rainforest_Robot
-2. To compile and xecute tests: dotnet run --test test 
+* Navigate to ~\Rainforest_Robot
+* To compile and xecute tests: dotnet run --test test 
 
 ## Instructions
 Call the executable with the following arguments, which can be given in any order:
@@ -45,11 +45,9 @@ I have attempted to break the problem into layers. CLIHandler for instance:
 
 Otherwise, I have attempted create abstractions and decoupling to allow for future development and maintenance.
 
-For instance, the PickList object was not strictly necessary but decoupled the operation of the robot from processing of the inputs.
+For instance, the PickList object was not strictly necessary but decoupled the operation of the robot from processing of the inputs. This object could also be serialized for future reference, or could even be scheduled for the future by serializing before the the execute command is called.
 
-    This object could also be serialized for future reference, or could even be scheduled for the future by serializing before the the execute command is called.
-    
-    I wanted to add an IPicker interface so that I could inject human pickers into this class, but unfortunately I ran out of time. 
+I wanted to add an IPicker interface so that I could inject human pickers into this class, but unfortunately I ran out of time. 
     
 Admittedly, CLIHandler does not feel easy to read. Additional commenting and whitespace would help, and the first few lines of processInput could be 'DRY'-er.
 

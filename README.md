@@ -38,6 +38,6 @@ For instance, the PickList object was not strictly necessary but decoupled the o
 Admittedly, CLIHandler does not feel easy to read. Additional commenting and whitespace would help, and the first few lines of processInput could be 'DRY'-er.
 
 ## Future developments
-Feeder could start with non-zero Quantity in future
-Crates ought to be checked that they are not co-located
-Human pickers could be added by using an interface such as IPicker instead of Robot in the PickList signature.
+* Feeder could start with non-zero Quantity in future
+* Crates ought to be checked that they are not co-located
+* Human pickers could be added by using an interface such as IPicker instead of Robot in the PickList signature.

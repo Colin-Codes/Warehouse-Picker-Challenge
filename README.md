@@ -1,4 +1,5 @@
 # Warehouse-Robot-Challenge
+C#: Console application to simulate the movements and actions of a robotic warehouse picker. Includes testing functionality.
 
 ## Quickstart
 1. Open a Command Prompt window
